@@ -1,0 +1,9 @@
+.Home {
+    margin: 40px;
+    border: 5px dotted pink;
+  }
+  
+  .DottedBox_content {
+    font-size: 80px;
+    text-align: center;
+  }
