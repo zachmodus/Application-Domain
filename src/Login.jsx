@@ -4,6 +4,10 @@ import ReactDOM from 'react-dom/client';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+
+import AdminUser from "./AdminUser";
+import CreateUser from "./CreateUser";
+
 const firebaseConfig = {
     apiKey: "AIzaSyCJKXhDvvMn_PvI3jrsymak7iLW-ZO0Jac",
     authDomain: "app-domain-project.firebaseapp.com",
@@ -19,19 +23,58 @@ const firebaseConfig = {
 
 
 
+  
 
 
 export const Login = (props) => {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
+    const [attempts, setAttempts] = useState(0);
+    const [isSuspended, setIsSuspended] = useState(false);
+  
+  
+
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(email);
+}
+
+
+const handlePasswordChange = (event) => {
+  setPass(event.target.value);
+}
+
+
+const handleLoginFormSubmit = (event) => {
+  event.preventDefault();
+
+  if (isSuspended) {
+    alert('Your account has been suspended due to too many failed attempts. Please contact customer support.');
+    return;
+  }
+
+  if (pass === 'correctpassword') {
+    alert('Login successful!');
+  } else {
+    setAttempts(attempts + 1);
+
+    if (attempts === 2) {
+      setIsSuspended(true);
+      alert('Too many failed login attempts. Your account has been suspended. Please contact customer support.');
+    } else {
+      alert('Incorrect password. Please try again.');
     }
+  }
+}
 
     const auth = getAuth();
 
+
+
+
+    
 
     const loggy = (e) => {
 
@@ -64,17 +107,42 @@ export const Login = (props) => {
     }
 
 
+    const Adminy = (e) => {
+
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(
+    <React.StrictMode>
+      <AdminUser/>
+    </React.StrictMode>
+  );
+  }
+  const Adminy2 = (e) => {
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <CreateUser/>
+  </React.StrictMode>
+);
+}
+
 
     return (
         <div className="auth-form-container">
             <h2>Login</h2>
-            <form className="login-form" onSubmit={handleSubmit}>
+            <form className="login-form" onSubmit={handleLoginFormSubmit}>
                 <label htmlFor="email">email</label>
                 <input value={email} onChange={(e) => setEmail(e.target.value)}type="email" placeholder="youremail@gmail.com" id="email" name="email" />
-                <label htmlFor="password">password</label>
+                <label htmlFor="password" value={pass} onChange={handlePasswordChange}>
+                Password:
+                </label>
                 <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password" />
                 <button onClick={loggy}>Log In</button>
                 <button onClick={ForgetPass}>Forgot Password ?</button>
+                <button onClick={Adminy}>Adminy ?</button>
+                <button onClick={Adminy2}>Adminy2 ?</button>
+
+
 
             </form>
             <button className="link-btn" onClick={() => props.onFormSwitch('register')}>Don't have an account? Register here.</button>
