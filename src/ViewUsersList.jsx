@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {collection,getDocs} from 'firebase/firestore'
-import {db} from 'initializefirebase'
+import {db} from './firebase'
 
 export default function ListUsers() {
     const[users, setUsers] = useState([])
