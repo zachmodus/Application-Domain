@@ -78,7 +78,6 @@ function CreateUser() {
   backgroundColor: "orange", // Set background color
   color: "white",     // Set text color
   borderRadius: "5px", // Add border radius
-  border: "none",     // Remove border
   cursor: "pointer"   // Add cursor pointer
 }}>
   Create
