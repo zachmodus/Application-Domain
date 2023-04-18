@@ -1,23 +1,38 @@
 import React, { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import App from "./App";
-import ReactDOM from 'react-dom/client';
-
-//import { app} from "./firebase";
+import './App.css';
 
 function ForgetPasswordForm() {
-    return (
-       <div className = "ForgetPasswordForm">
-        <form>
-        <input type = "text" placeholder = "email" />
-        <input type = "text" placeholder = "userid" />
+  const [email, setEmail] = useState("");
+  const [userid, setUserId] = useState("");
 
-        <button>Homeee</button>;
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    // Add logic to handle form submission, e.g. call Firebase auth functions
+  };
 
-        
-        
-        </form>
-        </div>
-        );
-    }
-    export default ForgetPasswordForm;
+  return (
+    <div className="ForgetPasswordForm">
+        <h1 style={{ textAlign: 'center', color: 'white' }}>Forgot Password</h1>
+      <form onSubmit={handleFormSubmit}>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <br/>
+        <input
+          type="text"
+          placeholder="User ID"
+          value={userid}
+          onChange={(e) => setUserId(e.target.value)}
+        />
+        <br/>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
+}
+
+export default ForgetPasswordForm;
