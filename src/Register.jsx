@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactDOM from 'react-dom/client';
 import NewUserForm from './NewUserForm';
-import ViewUserList from './ViewUsersList';
+
 
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 //import { app} from "./firebase";
@@ -77,15 +77,8 @@ export const Register = (props) => {
       </React.StrictMode>
     );
     }
-    const ViewUsers = (e) => {
+    
 
-      const root = ReactDOM.createRoot(document.getElementById('root'));
-  root.render(
-    <React.StrictMode>
-      <ViewUserList/>
-    </React.StrictMode>
-  );
-  }
 
 
 
@@ -101,7 +94,6 @@ export const Register = (props) => {
             <label htmlFor="password">Password</label>
             <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password" />
             <button onClick={reggy}>Log In</button>
-            <button onClick={ViewUsers}>Log In</button>
             <button onClick={CNU}>Create New User</button>
 
         </form>

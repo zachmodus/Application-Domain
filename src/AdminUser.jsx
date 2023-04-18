@@ -5,6 +5,7 @@ import ledger from './ledger';
 import ReactDOM from 'react-dom/client';
 import App from "./App";
 import './App.css';
+import ViewUserList from './ViewUsersList';
 
 
 
@@ -83,6 +84,7 @@ function AdminUser() {
         console.error('Error creating account:', error);
       });
   };
+  
 
   const handleDeleteAccount = (accountId) => {
     // Send a DELETE request to Firebase to delete the account
@@ -94,6 +96,16 @@ function AdminUser() {
       .catch((error) => {
         console.error('Error deleting account:', error);
       });
+  };
+
+  const ViewUsers = (e) => {
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <ViewUserList/>
+  </React.StrictMode>
+);
   };
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -121,6 +133,7 @@ function AdminUser() {
 
   <div>       
       <h2>Create Account</h2>
+      <h3><button onClick={ViewUsers}>View Users</button></h3>
               <form onSubmit={handleCreateAccount}>
 
           <label htmlFor="name">Account Name:</label>
