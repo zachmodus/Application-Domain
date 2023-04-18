@@ -61,13 +61,30 @@ function CreateUser() {
 
   return (
     <div>
-      <h1>Admin User</h1>
+<h1 style={{ textAlign: 'center', color: 'white' }}>Admin User</h1>
       <div>
-        <h2>Create User</h2>
+        <h2>Create User - Admin</h2>
+        <form onSubmit={handleCreateUser}>
         <input type="text" placeholder="Name" value={newUser.name} onChange={e => setNewUser({ ...newUser, name: e.target.value })} />
+        <br/>
         <input type="email" placeholder="Email" value={newUser.email} onChange={e => setNewUser({ ...newUser, email: e.target.value })} />
+        <br/>
         <input type="password" placeholder="Password" value={newUser.password} onChange={e => setNewUser({ ...newUser, password: e.target.value })} />
-        <button onClick={handleCreateUser}>Create</button>
+        <br/>
+        <button type="submit" style={{
+  margin: "0 auto",    // Center the button
+  display: "block",   // Change display property to "block"
+  padding: "10px",    // Add padding to the button
+  backgroundColor: "orange", // Set background color
+  color: "white",     // Set text color
+  borderRadius: "5px", // Add border radius
+  border: "none",     // Remove border
+  cursor: "pointer"   // Add cursor pointer
+}}>
+  Create
+</button> 
+</form>
+
       </div>
       <div>
         <h2>User List</h2>
@@ -75,8 +92,20 @@ function CreateUser() {
           {users.map(user => (
             <li key={user.id}>
               {user.name} ({user.email})
-              <button onClick={() => handleDeleteUser(user.id)}>Delete</button>
-            </li>
+              <button
+    onClick={() => handleDeleteUser(user.id)}
+    style={{
+      backgroundColor: "red",   // Set background color
+      color: "white",           // Set text color
+      padding: "10px",          // Add padding
+      borderRadius: "5px",     // Add border radius
+      border: "none",          // Remove border
+      cursor: "pointer",       // Add cursor pointer
+      marginTop: "10px"        // Add margin top
+    }}
+  >
+    Delete
+  </button>            </li>
           ))}
         </ul>
       </div>
