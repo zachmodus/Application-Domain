@@ -1,9 +1,15 @@
 import React from 'react';
+import './ledger.css';
+
 import AdminUser from './AdminUser';
 function Ledger({ newAccount }) {
+
+  const divStyles = {
+    backgroundColor: 'lightgrey' // Change this to the desired background color
+  };
+
   return (
-    <div>
-      <h2>New Account Information:</h2>
+<div style={divStyles}> {/* Apply inline styles to the div */}      <h2>New Account Information:</h2>
       <p>Account Name: {newAccount.accountName}</p>
       <p>Account Number: {newAccount.accountNumber}</p>
       <p>Account Description: {newAccount.accountDescription}</p>

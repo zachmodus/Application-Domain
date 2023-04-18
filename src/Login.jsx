@@ -129,23 +129,37 @@ root.render(
 
     return (
         <div className="auth-form-container">
+          <div className="title-container"></div>
+              
+              
+                <h1>CREAM ACCOUNTING</h1>
+
             <h2>Login</h2>
             <form className="login-form" onSubmit={handleLoginFormSubmit}>
-                <label htmlFor="email">email</label>
+                <label htmlFor="email">Email</label>
                 <input value={email} onChange={(e) => setEmail(e.target.value)}type="email" placeholder="youremail@gmail.com" id="email" name="email" />
                 <label htmlFor="password" value={pass} onChange={handlePasswordChange}>
                 Password:
                 </label>
                 <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password" />
+                <br/>
                 <button onClick={loggy}>Log In</button>
+                <br/>
                 <button onClick={ForgetPass}>Forgot Password ?</button>
-                <button onClick={Adminy}>Adminy ?</button>
-                <button onClick={Adminy2}>Adminy2 ?</button>
+                <br/>
+                <button onClick={Adminy}>Admin Create Account</button>
+                <br/>
+                <button onClick={Adminy2}>Create Admin User </button>
 
 
 
             </form>
             <button className="link-btn" onClick={() => props.onFormSwitch('register')}>Don't have an account? Register here.</button>
+
+            <h4>
+              <em>Accounting for all</em>
+                
+                </h4>
         </div>
     )
 

@@ -11,7 +11,7 @@ function ManagerUser(props) {
   }, []);
 
   return (
-    <div>
+    <div style={{background: 'linear-gradient(to right, #7439db, #C66FBC 48%, #F7944D)'}}> 
       <h1>Accounts</h1>
       <table>
         <thead>

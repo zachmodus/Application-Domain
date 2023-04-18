@@ -7,13 +7,23 @@ import ReactDOM from 'react-dom/client';
 
 function NewUserForm() {
     return (
+      
        <div className = "NewUserForm">
         <form>
-        <input type = "text" placeholder = "First Name...." />
+        <h1 style={{ textAlign: 'center', color: 'white' }}>Create New User</h1>
+
+        <input type = "text" placeholder = "First Name" />
+        <br/>
         <input type = "text" placeholder = "Last Name" />
+        <br/>
         <input type = "text" placeholder = "DOB" />
+        <br/>
         <input type = "text" placeholder = "Address" />
-        <button onClick={HomePage}>Home</button>;
+        <br/>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+  <button onClick={HomePage}>Home</button>
+</div>
+      
 
         
         
@@ -33,6 +43,9 @@ function NewUserForm() {
     }
 
 
+    
+
+export default NewUserForm;
     
 
 export default NewUserForm;

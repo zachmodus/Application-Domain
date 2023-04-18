@@ -4,7 +4,9 @@ import 'firebase/compat/database';
 import ledger from './ledger';
 import ReactDOM from 'react-dom/client';
 import App from "./App";
-import './table.css';
+import './App.css';
+
+
 
 function AdminUser() {
   const [accounts, setAccounts] = useState([]);
@@ -97,6 +99,7 @@ function AdminUser() {
     const { name, value } = event.target;
     setNewAccount(prevState => ({ ...prevState, [name]: value }));
   };
+  
 
   const handleAccountClick = (accountId) => {
     const accountRef = firebase.database().ref(`accounts/${accountId}`);
@@ -114,13 +117,16 @@ function AdminUser() {
   return (
     
     <div>
-      <h1>Admin User</h1>
-      <div>
-        <h2>Create Account</h2>
-        <form onSubmit={handleCreateAccount}>
+<h1 style={{ textAlign: 'center', color: 'white' }}>Admin User List</h1>
+
+  <div>       
+      <h2>Create Account</h2>
+              <form onSubmit={handleCreateAccount}>
+
           <label htmlFor="name">Account Name:</label>
           <input type="text" id="name" name="name" value={newAccount.name} onChange={handleChange} />
           
+
           <label htmlFor="number">Account Number:</label>
           <input type="text" id="number" name="number" value={newAccount.number} onChange={handleChange} />
           
@@ -132,50 +138,95 @@ function AdminUser() {
             <option value="debit">Debit</option>
             <option value="credit">Credit</option>
           </select>
-          
-          <label htmlFor="category">Account Category:</label>
+
+          <br />
+          <label htmlFor="category" >Account Category:</label>
           <input type="text" id="category" name="category" value={newAccount.category} onChange={handleChange} />
-          
-          <label htmlFor="subcategory">Account Subcategory:</label>
+
+          <label htmlFor="subcategory">Account Subcategory:</label> 
           <input type="text" id="subcategory" name="subcategory" value={newAccount.subcategory} onChange={handleChange} />
           
-          <label htmlFor="balance">Initial Balance:</label>
+
+          <label htmlFor="balance">Initial Balance:</label>           
           <input type="number" id="balance" name="balance" value={newAccount.balance} onChange={handleChange} />
           
+
           <label htmlFor="debit">Debit:</label>
           <input type="number" id="debit" name="debit" value={newAccount.debit} onChange={handleChange} />
-          
+          <br />
+
           <label htmlFor="credit">Credit:</label>
           <input type="number" id="credit" name="credit" value={newAccount.credit} onChange={handleChange} />
+          
           
           <label htmlFor="date">Date Added:</label>
           <input type="date" id="date" name="date" value={newAccount.date} onChange={handleChange} />
           
+
           <label htmlFor="user">User ID:</label>
           <input type="text" id="user" name="user" value={newAccount.user} onChange={handleChange} />
           
+
           <label htmlFor="order">Order:</label>
           <input type="number" id="order" name="order" value={newAccount.order} onChange={handleChange} />
-          
+          <br />
+
           <label htmlFor="statement">Statement:</label>
           <input type="text" id="statement" name="statement" value={newAccount.statement} onChange={handleChange} />
           
+
           <label htmlFor="comment">Comment:</label>
           <input type="text" id="comment" name="comment" value={newAccount.comment} onChange={handleChange} />
-          
-          <button type="submit">Create</button>
+          <br/>
+
+          <button type="submit" style={{
+  margin: "0 auto",    // Center the button
+  display: "block",   // Change display property to "block"
+  padding: "10px",    // Add padding to the button
+  backgroundColor: "orange", // Set background color
+  color: "white",     // Set text color
+  borderRadius: "5px", // Add border radius     // Remove border
+  cursor: "pointer"   // Add cursor pointer
+}}>
+  Create
+</button>       
         </form>
       </div>
-      <div>
+      <div style={{background: 'linear-gradient(to right, #7439db, #C66FBC 48%, #F7944D)'}}>
+        
         <h2>Account List</h2>
         <ul>
         {accounts.map(account => (
   <li key={account.id}>
-    <a href="#" onClick={() => handleAccountClick(account.id)}>
-      {account.name} ({account.number})
-    </a>
+    <a
+  href="#"
+  onClick={() => handleAccountClick(account.id)}
+  style={{
+    color: "white",     // Set text color
+    textDecoration: "underline",  // Add underline
+    cursor: "pointer"  // Add cursor pointer
+  }}
+>
+  {account.name} ({account.number})
+</a>
+
     {" - Balance: $" + account.balance}
-    <button onClick={() => handleDeleteAccount(account.id)}>Delete</button>
+    <br/>
+    <br/>
+    <button
+  onClick={() => handleDeleteAccount(account.id)}
+  style={{
+    backgroundColor: "red",   // Set background color
+    color: "white",           // Set text color
+    padding: "10px",          // Add padding
+    borderRadius: "5px",     // Add border radius
+    border: "none",          // Remove border
+    cursor: "pointer"        // Add cursor pointer
+  }}
+>
+  Delete
+</button>
+
   </li>
 ))}
         </ul>
