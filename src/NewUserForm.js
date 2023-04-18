@@ -46,6 +46,3 @@ function NewUserForm() {
     
 
 export default NewUserForm;
-    
-
-export default NewUserForm;
