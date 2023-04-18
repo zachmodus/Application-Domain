@@ -3,7 +3,7 @@
     width: 100%;
   }
   
-  .account-table th,
+  .account-table th,  
   .account-table td {
     padding: 8px;
     text-align: left;
@@ -11,6 +11,6 @@
   }
   
   .account-table th {
-    background-color: #f2f2f2;
+    background-color: #00ffee;
   }
   
