@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 import ledger from './ledger';
-import ReactDOM from 'react-dom/client';
 import App from "./App";
 import './App.css';
 import ViewUserList from './ViewUsersList';
+import TableComponent from './viewusersplaceholder';
+import ReactDOM from 'react-dom';
 
 
 
@@ -99,14 +100,14 @@ function AdminUser() {
   };
 
   const ViewUsers = (e) => {
-
     const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <ViewUserList/>
-  </React.StrictMode>
-);
-  };
+    ReactDOM.render(
+      <React.StrictMode>
+        <ViewUserList />
+      </React.StrictMode>,
+      document.getElementById('root')
+    );
+  }
   const handleChange = (event) => {
     const { name, value } = event.target;
     setNewAccount(prevState => ({ ...prevState, [name]: value }));
