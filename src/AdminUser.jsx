@@ -5,8 +5,8 @@ import ledger from './ledger';
 import App from "./App";
 import './App.css';
 import ViewUserList from './ViewUsersList';
-import TableComponent from './viewusersplaceholder';
 import ReactDOM from 'react-dom';
+import ViewCOATable from './Table Stuff/COATableview';
 
 
 
@@ -14,21 +14,21 @@ function AdminUser() {
   const [accounts, setAccounts] = useState([]);
   const [selectedAccount, setSelectedAccount] = useState(null);
   const [newAccount, setNewAccount] = useState({
-    accountName: '',
-    accountNumber: '',
-    accountDescription: '',
-    normalSide: '',
-    accountCategory: '',
-    accountSubcategory: '',
-    initialBalance: '',
-    debit: '',
-    credit: '',
-    balance: '',
-    dateAdded: '',
-    userId: '',
-    order: '',
-    statement: '',
-    comment: ''
+          name: '',
+          number: '',
+          description: '',
+          normalSide: '',
+          category: '',
+          subcategory: '',
+          balance: '',
+          debit: '',
+          credit: '',
+          curbalance: '',
+          date: '',
+          user: '',
+          order: '',
+          statement: '',
+          comment: ''
   });
 
   useEffect(() => {
@@ -64,18 +64,18 @@ function AdminUser() {
         const account = { id: newAccountRef.key, ...newAccount };
         setAccounts([...accounts, account]);
         setNewAccount({
-          accountName: '',
-          accountNumber: '',
-          accountDescription: '',
+          name: '',
+          number: '',
+          description: '',
           normalSide: '',
-          accountCategory: '',
-          accountSubcategory: '',
-          initialBalance: '',
+          category: '',
+          subcategory: '',
+          balance: '',
           debit: '',
           credit: '',
-          balance: '',
-          dateAdded: '',
-          userId: '',
+          curbalance: '',
+          date: '',
+          user: '',
           order: '',
           statement: '',
           comment: ''
@@ -99,6 +99,17 @@ function AdminUser() {
       });
   };
 
+  //view Chart of Accounts
+  const ViewCHOA = (e) => {
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    ReactDOM.render(
+      <React.StrictMode>
+        <ViewCOATable/>
+      </React.StrictMode>,
+      document.getElementById('root')
+    );
+  }
+//view user list
   const ViewUsers = (e) => {
     const root = ReactDOM.createRoot(document.getElementById('root'));
     ReactDOM.render(
@@ -135,6 +146,9 @@ function AdminUser() {
   <div>       
       <h2>Create Account</h2>
       <h3><button onClick={ViewUsers}>View Users</button></h3>
+      <h3><button onClick={ViewCHOA}>View Chart of Accounts</button></h3>
+      
+
               <form onSubmit={handleCreateAccount}>
 
           <label htmlFor="name">Account Name:</label>
