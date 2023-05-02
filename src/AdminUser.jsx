@@ -7,6 +7,7 @@ import './App.css';
 import ViewUserList from './ViewUsersList';
 import ReactDOM from 'react-dom';
 import ViewCOATable from './Table Stuff/COATableview';
+import AddAccountButton from './AddAccount/AddAccountButton';
 
 
 
@@ -55,7 +56,7 @@ function AdminUser() {
     });
   }, []);
 
-  const handleCreateAccount = () => {
+   const handleCreateAccount = () => {
     // Send a POST request to Firebase to create a new account
     const accountsRef = firebase.database().ref('accounts');
     const newAccountRef = accountsRef.push();
@@ -99,6 +100,16 @@ function AdminUser() {
       });
   };
 
+//Add Accounts
+const AddAccount = (e) => {
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  ReactDOM.render(
+    <React.StrictMode>
+      <AddAccountButton/>
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+}
   //view Chart of Accounts
   const ViewCHOA = (e) => {
     const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -109,6 +120,7 @@ function AdminUser() {
       document.getElementById('root')
     );
   }
+  
 //view user list
   const ViewUsers = (e) => {
     const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -147,6 +159,7 @@ function AdminUser() {
       <h2>Create Account</h2>
       <h3><button onClick={ViewUsers}>View Users</button></h3>
       <h3><button onClick={ViewCHOA}>View Chart of Accounts</button></h3>
+      <h3><button onClick={AddAccount}>Add Accounts</button></h3>
       
 
               <form onSubmit={handleCreateAccount}>
@@ -290,16 +303,5 @@ function AdminUser() {
     </div>
   );
 
-
-
-      
-   
-
-
-
-
-  
-
-  
-          }
+}
           export default AdminUser;
