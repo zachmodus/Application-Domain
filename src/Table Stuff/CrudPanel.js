@@ -12,9 +12,8 @@ export class CrudPanel extends React.Component {
             mode:'',
             isOpen: false,
             record: {
-                ID: props.id,
+                number: props.number,
                 name: props.record.name,
-                number: props.record.number,
                 description: props.record.description,
                 normalSide: props.record.normalSide,
                 category: props.record.category,
@@ -27,11 +26,10 @@ export class CrudPanel extends React.Component {
                 user: props.record.user,
                 order: props.record.order,
                 statement: props.record.statement,
-                comment: props.record.comment
+                comment: props.record.comment,
             },
-            modID:'',
-            modName:'',
             modNumber: '',
+            modName:'',
             modDescription:'',
             modNormalSide: '',
             modCategory: '',
@@ -47,13 +45,15 @@ export class CrudPanel extends React.Component {
             modComment: ''
         }
     }
-        render(){
+            componentDidMount(){
+                console.log(this.state.record)
+            }
+    render(){
             return(
-                
                 <>
-                   <Button variant='primary' className="ms-2" onClick={this.openModal('add')}>Add record</Button> 
+                
+                <Button variant='primary' className="ms-2" onClick={() => this.openModal('edit')}>Delete record</Button>
 
-                <Button variant='primary' className="ms-2" onClick={this.openModal('edit')}>Edit record</Button>
                 
                 <Modal show={this.state.isOpen}>
                     <Modal.Header>
@@ -61,15 +61,6 @@ export class CrudPanel extends React.Component {
                     <Button size='sm' variant='dark' onClick={() => this.closeModal()}>X</Button>
                     </Modal.Header>
                     <Modal.Body>
-
-                        <InputGroup>
-                        <InputGroup.Text>Account Name</InputGroup.Text>
-                        <Form.Control
-                         value = {this.state.modName}
-                         onChange = {e => {this.setState({modName: e.target.value})}}
-                         
-                         />
-                        </InputGroup>
 
                         <InputGroup>
                         <InputGroup.Text>Account Number</InputGroup.Text>
@@ -80,6 +71,16 @@ export class CrudPanel extends React.Component {
                          />
                         </InputGroup>
 
+                        <InputGroup>
+                        <InputGroup.Text>Account Name</InputGroup.Text>
+                        <Form.Control
+                         value = {this.state.modName}
+                         onChange = {e => {this.setState({modName: e.target.value})}}
+                         
+                         />
+                        </InputGroup>
+
+                        
                         <InputGroup>
                         <InputGroup.Text>Account Description</InputGroup.Text>
                         <Form.Control
@@ -199,22 +200,19 @@ export class CrudPanel extends React.Component {
                         </InputGroup>
                     </Modal.Body>
                     <Modal.Footer>
-                    <Button variant='Primary' className="ms-2" onClick={()=> {this.interface('add')}} style={(this.state.mode!= 'add')? {display:'none'}:{}}>Add Record</Button>
-                        <Button variant='Success' className="ms-2" onClick={()=> {this.interface('update')}} style={(this.state.mode == 'add')? {display:'none'}:{}}>Update Record</Button>
-                        <Button variant='Danger' className="ms-2" onClick={()=> {this.interface('delete')}} style={(this.state.mode == 'add')? {display:'none'}:{}}>Delete Record</Button>
+                    <Button variant='Danger' className="ms-2" onClick={()=> {this.interface('delete')}} style={(this.state.mode == 'add')? {display:'none'}:{}}>Delete Record</Button>
                     </Modal.Footer>
                 </Modal>
                 </>
             )
         }
-        openModal = (mode) => () => {
-            if(mode=='add'){
+        openModal (option){
+            if(option=='add'){
             this.setState({
-              mode: mode,
               isOpen: true,
-              modID: this.props.id,
-              modName: '',
+              mode: option,
               modNumber: '',
+              modName: '',
               modDescription: '',
               modNormalSide: '',
               modCategory: '',
@@ -230,26 +228,25 @@ export class CrudPanel extends React.Component {
               modComment: ''
             });
           }
-          else if(mode=='edit'){
+          else if(option=='edit'){
             this.setState({
-              mode: mode,
               isOpen: true,
-              modID: this.props.id,
-              modName: this.props.record.name,
-              modNumber: this.props.record.number,
-              modDescription: this.props.record.description,
-              modNormalSide: this.props.record.normalSide,
-              modCategory: this.props.record.category,
-              modSubcategory: this.props.record.subcategory,
-              modBalance: this.props.record.balance,
-              modCredit: this.props.record.credit,
-              modDebit: this.props.record.debit,
-              modCurBalance: this.props.record.curBalance,
-              modDate: this.props.record.date,
-              modUser: this.props.record.user,
-              modOrder: this.props.record.order,
-              modStatement: this.props.record.statement,
-              modComment: this.props.record.comment
+              mode: option,
+              modNumber: this.state.number,
+              modName: this.state.record.name,
+              modDescription: this.state.record.description,
+              modNormalSide: this.state.record.normalSide,
+              modCategory: this.state.record.category,
+              modSubcategory: this.state.record.subcategory,
+              modBalance: this.state.record.balance,
+              modCredit: this.state.record.credit,
+              modDebit: this.state.record.debit,
+              modCurBalance: this.state.record.curBalance,
+              modDate: this.state.record.date,
+              modUser: this.state.record.user,
+              modOrder: this.state.record.order,
+              modStatement: this.state.record.statement,
+              modComment: this.state.record.comment
             });
           }
         }
@@ -263,11 +260,11 @@ export class CrudPanel extends React.Component {
 
         getAllData(){
             return {
-                id: this.state.modID,
+                id: this.state.key,
                 data: {
+                number: this.state.modNnumber,
                 name: this.state.modName,
-                accountNumber: this.state.modNnumber,
-                accountDescription: this.state.modDescription,
+                description: this.state.modDescription,
                 normalSide: this.state.modNormalSide,
                 category: this.state.modCategory,
                 subcategory: this.state.modSubcategory,
@@ -276,7 +273,7 @@ export class CrudPanel extends React.Component {
                 debit: this.state.modDebit,
                 curBalance: this.state.modCurBalance,
                 date: this.state.modDate,
-                userID: this.state.modUser,
+                user: this.state.modUser,
                 order: this.state.modOrder,
                 statement: this.state.modStatement,
                 comment: this.state.modComment
@@ -285,7 +282,7 @@ export class CrudPanel extends React.Component {
         }
 
         interface(mode){
-            if(mode== 'insert')
+            if(mode== 'add')
             this.insertData()
 
             else if(mode== 'update')
@@ -296,11 +293,13 @@ export class CrudPanel extends React.Component {
 
             this.closeModal()
         }
+        
 
          insertData(){
             const dbRef = ref(db);
             const record = this.getAllData();
-            const Fireaccount = 'accounts/' + record.id;
+            const Fireaccount = 'accounts/'+ record.key;
+            
 
             get(child(dbRef,Fireaccount)).then(snapshot =>{
                 if(snapshot.exists()){
@@ -315,7 +314,7 @@ export class CrudPanel extends React.Component {
         updateData(){
             const dbRef = ref(db);
             const record = this.getAllData();
-            const Fireaccount = 'accounts/' + record.id;
+            const Fireaccount = 'accounts/' + record.key;
             get(child(dbRef,Fireaccount)).then(snapshot =>{
                 if(snapshot.exists()){
                     update(ref(db,Fireaccount), record.data)
@@ -329,7 +328,7 @@ export class CrudPanel extends React.Component {
         deleteData(){
             const dbRef = ref(db);
             const record = this.getAllData();
-            const Fireaccount = 'accounts/' + record.id;
+            const Fireaccount = 'accounts/' + record.key;
 
             get(child(dbRef,Fireaccount)).then(snapshot =>{
                 if(snapshot.exists()){
