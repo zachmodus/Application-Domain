@@ -7,6 +7,7 @@ import {COATable} from './COATable';
 
 function ViewCOATable() {
     return(
+        
     <COATable/>
     );
 }

@@ -6,9 +6,9 @@ import { Table } from 'react-bootstrap';
 
 function TableComponent(props) {
   const data = [
-    { id: 1, name: 'Mark Otto', email: 'mark@example.com' },
-    { id: 2, name: 'Jacob Thornton', email: 'jacob@example.com' },
-    { id: 3, name: 'Larry the Bird', email: 'larry@example.com' }
+    { id: 1, name: 'Myles Joseph', email: 'Myles@gmail.com' },
+    { id: 2, name: 'Logan Devine', email: 'Logan@Gmail.com' },
+    { id: 3, name: 'Zachary Okwuosa', email: 'Zachary@gmail.com' }
   ];
 render ()
   return (
