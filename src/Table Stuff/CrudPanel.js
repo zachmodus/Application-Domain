@@ -265,21 +265,21 @@ export class CrudPanel extends React.Component {
             return {
                 id: this.state.modID,
                 data: {
-                name: this.state.name,
-                number: this.state.number,
-                description: this.state.description,
-                normalSide: this.state.normalSide,
-                category: this.state.category,
-                subcategory: this.state.subcategory,
-                balance: this.state.balance,
-                credit: this.state.credit,
-                debit: this.state.debit,
-                curBalance: this.statecurBalance,
-                date: this.state.date,
-                user: this.state.user,
-                order: this.state.order,
-                statement: this.state.statement,
-                comment: this.state.comment
+                name: this.state.modName,
+                accountNumber: this.state.modNnumber,
+                accountDescription: this.state.modDescription,
+                normalSide: this.state.modNormalSide,
+                category: this.state.modCategory,
+                subcategory: this.state.modSubcategory,
+                balance: this.state.modBalance,
+                credit: this.state.modCredit,
+                debit: this.state.modDebit,
+                curBalance: this.state.modCurBalance,
+                date: this.state.modDate,
+                userID: this.state.modUser,
+                order: this.state.modOrder,
+                statement: this.state.modStatement,
+                comment: this.state.modComment
                 }
             }
         }
@@ -299,8 +299,8 @@ export class CrudPanel extends React.Component {
 
          insertData(){
             const dbRef = ref(db);
-            const record = this.getAllData;
-            const Fireaccount = 'accounts/' + record.ID
+            const record = this.getAllData();
+            const Fireaccount = 'accounts/' + record.id;
 
             get(child(dbRef,Fireaccount)).then(snapshot =>{
                 if(snapshot.exists()){
@@ -314,12 +314,11 @@ export class CrudPanel extends React.Component {
 
         updateData(){
             const dbRef = ref(db);
-            const record = this.getAllData;
-            const Fireaccount = 'accounts/' + record.ID
-
+            const record = this.getAllData();
+            const Fireaccount = 'accounts/' + record.id;
             get(child(dbRef,Fireaccount)).then(snapshot =>{
                 if(snapshot.exists()){
-                    update(ref(db,Fireaccount),record.data)
+                    update(ref(db,Fireaccount), record.data)
                 }
                 else{
                     alert('cannot update, account does not exist')
@@ -329,8 +328,8 @@ export class CrudPanel extends React.Component {
 
         deleteData(){
             const dbRef = ref(db);
-            const record = this.getAllData;
-            const Fireaccount = 'accounts/' + record.ID
+            const record = this.getAllData();
+            const Fireaccount = 'accounts/' + record.id;
 
             get(child(dbRef,Fireaccount)).then(snapshot =>{
                 if(snapshot.exists()){
