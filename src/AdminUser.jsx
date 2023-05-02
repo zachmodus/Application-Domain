@@ -7,6 +7,8 @@ import './App.css';
 import ViewUserList from './ViewUsersList';
 import ReactDOM from 'react-dom';
 import ViewCOATable from './Table Stuff/COATableview';
+import Navbar from './navbar';
+import HomeButton from './Homebutton';
 
 
 
@@ -140,7 +142,21 @@ function AdminUser() {
 
   return (
     
+    
+    
     <div>
+
+
+      
+                <h1>Admin User</h1>
+
+          <div>
+      <h1></h1>
+      <Navbar/>
+      <div>
+      <HomeButton />
+    </div>
+    </div>
 <h1 style={{ textAlign: 'center', color: 'white' }}>Admin User List</h1>
 
   <div>       

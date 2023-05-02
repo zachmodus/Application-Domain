@@ -4,10 +4,9 @@ import ReactDOM from 'react-dom/client';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-
+import Ratiocharts from './Ratiocharts';
 import AdminUser from "./AdminUser";
 import CreateUser from "./CreateUser";
-
 const firebaseConfig = {
     apiKey: "AIzaSyCJKXhDvvMn_PvI3jrsymak7iLW-ZO0Jac",
     authDomain: "app-domain-project.firebaseapp.com",
@@ -112,7 +111,7 @@ const handleLoginFormSubmit = (event) => {
       const root = ReactDOM.createRoot(document.getElementById('root'));
   root.render(
     <React.StrictMode>
-      <AdminUser/>
+      <Ratiocharts/>
     </React.StrictMode>
   );
   }
