@@ -4,6 +4,15 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+Before running replace in package.json:
+
+replace "start": "react-scripts start" by "start": "react-scripts --openssl-legacy-provider start"
+replace "build": "react-scripts build" by "build": "react-scripts --openssl-legacy-provider build"
+
+Next run this command:
+npm install --save react react-dom @types/react @types/react-dom
+
+
 In the project directory, you can run:
 
 ### `npm start`

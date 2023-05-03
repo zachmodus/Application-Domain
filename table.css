@@ -1,0 +1,16 @@
+.account-table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .account-table th,  
+  .account-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .account-table th {
+    background-color: #00ffee;
+  }
+  
