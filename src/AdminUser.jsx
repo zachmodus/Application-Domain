@@ -6,7 +6,7 @@ import App from "./App";
 import './App.css';
 import ViewUserList from './ViewUsersList';
 import ReactDOM from 'react-dom';
-import ViewCOATable  from './JournalEntry/ViewGLTable';
+import ViewCOATable from './Table Stuff/ViewCOATable';
 import Navbar from './navbar';
 import HomeButton from './Homebutton';
 import AddAccountButton from './AddAccount/AddAccountButton';

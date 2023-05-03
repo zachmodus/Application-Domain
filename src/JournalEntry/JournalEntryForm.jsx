@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+/* import React, { useState } from 'react';
 import JournalEntry from './JournalEntry';
 
 function JournalEntryForm(props) {
@@ -37,3 +37,4 @@ function JournalEntryForm(props) {
 }
 
 export default JournalEntryForm;
+ */

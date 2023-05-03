@@ -12,7 +12,8 @@ export class CrudPanel extends React.Component {
             mode:'',
             isOpen: false,
             record: {
-                number: props.number,
+                id: props.id,
+                number: props.record.number,
                 name: props.record.name,
                 description: props.record.description,
                 normalSide: props.record.normalSide,
@@ -28,6 +29,7 @@ export class CrudPanel extends React.Component {
                 statement: props.record.statement,
                 comment: props.record.comment,
             },
+            modID: '',
             modNumber: '',
             modName:'',
             modDescription:'',

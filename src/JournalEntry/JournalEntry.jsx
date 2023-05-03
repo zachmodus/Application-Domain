@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+/* import React, { useState, useEffect } from "react";
 import { getAccounts } from "./firebasee";
 
 function JournalEntry() {
@@ -31,10 +31,10 @@ function JournalEntry() {
       {selectedAccount && (
         <div>
           <p>Selected account: {selectedAccount}</p>
-          {/* Add debit/credit inputs and submit button here */}
+          { Add debit/credit inputs and submit button here }
         </div>
       )}
     </div>
   );
 }
-export default JournalEntry;
+export default JournalEntry; */

@@ -29,6 +29,8 @@ export class RealTimeAccountData extends React.Component {
       if (JSON.stringify(records) !== JSON.stringify(this.state.tableData)) {
         this.setState({ tableData: records });
       }
+    }, (error) => {
+      console.error(error);
     });
   }
 
@@ -62,7 +64,7 @@ export class RealTimeAccountData extends React.Component {
             return (
               <tr key={index}>
                 <td>{index+1}</td>
-                <td>{row.number}</td>
+                <td>{row.data.number}</td>
                 <td>{row.data.name}</td>
                 <td>{row.data.description}</td>
                 <td>{row.data.normalSide}</td>
@@ -77,7 +79,7 @@ export class RealTimeAccountData extends React.Component {
                 <td>{row.data.order}</td>
                 <td>{row.data.statement}</td>
                 <td>{row.data.comment}</td>
-                <td><CrudPanel key={row.number} record={row.data}/></td>
+                <td><CrudPanel key={row.key} record={row.data}/></td>
               </tr>
             );
           })}

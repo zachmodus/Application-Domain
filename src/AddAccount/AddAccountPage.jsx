@@ -4,9 +4,10 @@ import 'firebase/compat/database';
 import '../App.css';
 import ReactDOM from 'react-dom';
 import { Table } from 'react-bootstrap';
+import { getDatabase, ref, set } from "firebase/database";
 
 
-
+const db = getDatabase();
 
 function AddAccountPage() {
   const [accounts, setAccounts] = useState([]);
@@ -40,6 +41,8 @@ function AddAccountPage() {
       appId: "1:172289183380:web:4d72366d3cb6df22722e81",
       measurementId: "G-BLNDN3BCMJ"    });
 
+      
+
     // Fetch the list of accounts from Firebase
     const accountsRef = firebase.database().ref('accounts');
     accountsRef.on('value', (snapshot) => {
@@ -58,15 +61,24 @@ function AddAccountPage() {
     setNewAccount(prevState => ({ ...prevState, [name]: value }));
   };
 
-   const handleCreateAccount = (event) => {
+  const handleCreateAccount = (event) => {
     // Send a POST request to Firebase to create a new account
     event.preventDefault();
     const accountsRef = firebase.database().ref('accounts');
     const newAccountRef = accountsRef.push();
     newAccountRef.set(newAccount)
       .then(() => {
-        const account = { id: newAccountRef.key, ...newAccount };
-        setAccounts([...accounts, account]);
+        // Fetch the updated list of accounts from Firebase
+        accountsRef.once('value', (snapshot) => {
+          const data = snapshot.val();
+          if (data) {
+            const accountsList = Object.keys(data).map(key => ({ id: key, ...data[key] }));
+            setAccounts(accountsList);
+          } else {
+            setAccounts([]);
+          }
+        });
+  
         setNewAccount({
           name: '',
           number: '',
@@ -88,7 +100,7 @@ function AddAccountPage() {
       .catch((error) => {
         console.error('Error creating account:', error);
       });
-  };  
+  };
 
   const handleAccountClick = (accountId) => {
     const accountRef = firebase.database().ref(`accounts/${accountId}`);
@@ -101,9 +113,7 @@ function AddAccountPage() {
       }
     });
   };
-
-
-  return (
+ return (
     
     <div>
 <h1 style={{ textAlign: 'center', color: 'white' }}>Add Account</h1>
