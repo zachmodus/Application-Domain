@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import JournalEntry from './JournalEntry';
 
 function JournalEntryForm(props) {
   const [description, setDescription] = useState('');

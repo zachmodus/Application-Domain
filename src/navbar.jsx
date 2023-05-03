@@ -4,9 +4,9 @@ import CreateAcc from './CreateAcc.jsx';
 import EmailForm from './emailform';
 import ReactDOM from 'react-dom/client';
 import FileUpload from './fileupload';
-import JournalEntryForm from './JournalEntryForm';
+import JournalEntryForm from './JournalEntry/JournalEntryForm';
 import AccountingApp from './AccountingApp';
-import JournalEntry from './JournalEntry';
+import JournalEntry from './JournalEntry/JournalEntry';
 
 function Navbar() {
 

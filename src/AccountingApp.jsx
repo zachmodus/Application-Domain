@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import JournalEntryForm from './JournalEntryForm';
+import JournalEntryForm from './JournalEntry/JournalEntryForm';
 
 function AccountingApp() {
   const [journalEntries, setJournalEntries] = useState([]);

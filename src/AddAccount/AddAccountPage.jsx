@@ -58,8 +58,9 @@ function AddAccountPage() {
     setNewAccount(prevState => ({ ...prevState, [name]: value }));
   };
 
-   const handleCreateAccount = () => {
+   const handleCreateAccount = (event) => {
     // Send a POST request to Firebase to create a new account
+    event.preventDefault();
     const accountsRef = firebase.database().ref('accounts');
     const newAccountRef = accountsRef.push();
     newAccountRef.set(newAccount)
