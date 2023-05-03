@@ -2,12 +2,11 @@ import StartFirebase from '../firebase';
 import React from 'react';
 import { ref, onValue } from 'firebase/database';
 import { Table } from 'react-bootstrap';
-import {CrudPanel} from './CrudPanel';
+import { CrudPanel } from './CrudPanel';
 
 const db = StartFirebase();
-let UniqueNumber = 0;
 
-export class COATable extends React.Component {
+export class RealTimeAccountData extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -26,27 +25,31 @@ export class COATable extends React.Component {
         let data = childSnapshot.val();
         records.push({ "key": keyName, "data": data });
       });
-      this.setState({ tableData: records });
+      
+      if (JSON.stringify(records) !== JSON.stringify(this.state.tableData)) {
+        this.setState({ tableData: records });
+      }
     });
   }
 
   render() {
     return (
-      <Table>
+      <Table bordered striped> 
         <thead>
           <tr>
-            <th>Account Name</th>
+            <th>#</th>
             <th>Account Number</th>
+            <th>Account Name</th>
             <th>Account Description</th>
             <th>Normal Side</th>
-            <th>Account Category</th>
-            <th>Account Subcategory</th>
-            <th>Initial Balance</th>
+            <th>Category</th>
+            <th>Subcategory</th>
+            <th>Opening Balance</th>
             <th>Credit</th>
             <th>Debit</th>
             <th>Current Balance</th>
-            <th>Account Date Added</th>
-            <th>User ID</th>
+            <th>Date</th>
+            <th>User</th>
             <th>Order</th>
             <th>Statement</th>
             <th>Comment</th>
@@ -57,9 +60,10 @@ export class COATable extends React.Component {
         <tbody>
           {this.state.tableData.map((row, index) => {
             return (
-              <tr key={UniqueNumber++}>
+              <tr key={index}>
+                <td>{index+1}</td>
+                <td>{row.number}</td>
                 <td>{row.data.name}</td>
-                <td>{row.data.number}</td>
                 <td>{row.data.description}</td>
                 <td>{row.data.normalSide}</td>
                 <td>{row.data.category}</td>
@@ -73,7 +77,7 @@ export class COATable extends React.Component {
                 <td>{row.data.order}</td>
                 <td>{row.data.statement}</td>
                 <td>{row.data.comment}</td>
-                <td><CrudPanel id = {row.key} record = {row.data}/></td>
+                <td><CrudPanel key={row.number} record={row.data}/></td>
               </tr>
             );
           })}
