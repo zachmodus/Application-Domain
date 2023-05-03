@@ -6,10 +6,12 @@ import App from "./App";
 import './App.css';
 import ViewUserList from './ViewUsersList';
 import ReactDOM from 'react-dom';
-import ViewCOATable  from './Table Stuff/ViewCOATable';
+import ViewCOATable  from './JournalEntry/ViewGLTable';
 import Navbar from './navbar';
 import HomeButton from './Homebutton';
 import AddAccountButton from './AddAccount/AddAccountButton';
+import AddGLButton from './JournalEntry/AddGLButton';
+import  ViewGLTable from './JournalEntry/ViewGLTable';
 
 
 
@@ -133,6 +135,29 @@ const AddAccount = (e) => {
       document.getElementById('root')
     );
   }
+
+  //view Journal entries
+  const ViewGL = (e) => {
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    ReactDOM.render(
+      <React.StrictMode>
+        <ViewGLTable />
+      </React.StrictMode>,
+      document.getElementById('root')
+    );
+  }
+
+  //add GL 
+  const AddGL = (e) => {
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    ReactDOM.render(
+      <React.StrictMode>
+        <AddGLButton />
+      </React.StrictMode>,
+      document.getElementById('root')
+    );
+  }
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setNewAccount(prevState => ({ ...prevState, [name]: value }));
@@ -174,161 +199,13 @@ const AddAccount = (e) => {
   <div>       
       <h2>Create Account</h2>
       <h3><button onClick={ViewUsers}>View Users</button></h3>
-      <h3><button onClick={ViewCHOA}>View Chart of Accounts</button></h3>
       <h3><button onClick={AddAccount}>Add Accounts</button></h3>
-      
-
-              <form onSubmit={handleCreateAccount}>
-
-          <label htmlFor="name">Account Name:</label>
-          <input type="text" id="name" name="name" value={newAccount.name} onChange={handleChange} />
-          
-
-          <label htmlFor="number">Account Number:</label>
-          <input type="text" id="number" name="number" value={newAccount.number} onChange={handleChange} />
-          
-          <label htmlFor="description">Account Description:</label>
-          <input type="text" id="description" name="description" value={newAccount.description} onChange={handleChange} />
-          
-          <label htmlFor="normalSide">Normal Side:</label>
-          <select id="normalSide" name="normalSide" value={newAccount.normalSide} onChange={handleChange}>
-            <option value="debit">Debit</option>
-            <option value="credit">Credit</option>
-          </select>
-
-          <br />
-          <label htmlFor="category" >Account Category:</label>
-          <input type="text" id="category" name="category" value={newAccount.category} onChange={handleChange} />
-
-          <label htmlFor="subcategory">Account Subcategory:</label> 
-          <input type="text" id="subcategory" name="subcategory" value={newAccount.subcategory} onChange={handleChange} />
-          
-
-          <label htmlFor="balance">Initial Balance:</label>           
-          <input type="number" id="balance" name="balance" value={newAccount.balance} onChange={handleChange} />
-          
-
-          <label htmlFor="debit">Debit:</label>
-          <input type="number" id="debit" name="debit" value={newAccount.debit} onChange={handleChange} />
-          <br />
-
-          <label htmlFor="credit">Credit:</label>
-          <input type="number" id="credit" name="credit" value={newAccount.credit} onChange={handleChange} />
-          
-          
-          <label htmlFor="date">Date Added:</label>
-          <input type="date" id="date" name="date" value={newAccount.date} onChange={handleChange} />
-          
-
-          <label htmlFor="user">User ID:</label>
-          <input type="text" id="user" name="user" value={newAccount.user} onChange={handleChange} />
-          
-
-          <label htmlFor="order">Order:</label>
-          <input type="number" id="order" name="order" value={newAccount.order} onChange={handleChange} />
-          <br />
-
-          <label htmlFor="statement">Statement:</label>
-          <input type="text" id="statement" name="statement" value={newAccount.statement} onChange={handleChange} />
-          
-
-          <label htmlFor="comment">Comment:</label>
-          <input type="text" id="comment" name="comment" value={newAccount.comment} onChange={handleChange} />
-          <br/>
-
-          <button type="submit" style={{
-  margin: "0 auto",    // Center the button
-  display: "block",   // Change display property to "block"
-  padding: "10px",    // Add padding to the button
-  backgroundColor: "orange", // Set background color
-  color: "white",     // Set text color
-  borderRadius: "5px", // Add border radius     // Remove border
-  cursor: "pointer"   // Add cursor pointer
-}}>
-  Create
-</button>       
-        </form>
-      </div>
-      <div style={{background: 'linear-gradient(to right, #7439db, #C66FBC 48%, #F7944D)'}}>
-        
-        <h2>Account List</h2>
-        <ul>
-        {accounts.map(account => (
-  <li key={account.id}>
-    <a
-  href="#"
-  onClick={() => handleAccountClick(account.id)}
-  style={{
-    color: "white",     // Set text color
-    textDecoration: "underline",  // Add underline
-    cursor: "pointer"  // Add cursor pointer
-  }}
->
-  {account.name} ({account.number})
-</a>
-
-    {" - Balance: $" + account.balance}
-    <br/>
-    <br/>
-    <button
-  onClick={() => handleDeleteAccount(account.id)}
-  style={{
-    backgroundColor: "red",   // Set background color
-    color: "white",           // Set text color
-    padding: "10px",          // Add padding
-    borderRadius: "5px",     // Add border radius
-    border: "none",          // Remove border
-    cursor: "pointer"        // Add cursor pointer
-  }}
->
-  Delete
-</button>
-
-  </li>
-))}
-        </ul>
-      </div>
-
-     
-    
-     
-      {selectedAccount && (
-  <div>
-    <h2>Account Details</h2>
-    <table className="account-table">
-      <tbody>
-        <tr>
-          <td>Account Name:</td>
-          <td>{selectedAccount.name}</td>
-          <td>Account Number:</td>
-          <td>{selectedAccount.number}</td>
-          <td>Account Description:</td>
-          </tr>
-          <tr>
-
-          <td>{selectedAccount.description}</td>
-          <td>Normal Side:</td>
-          <td>{selectedAccount.normalSide}</td>
-        </tr>
-       
-        {/* Add more rows for other account information */}
-      </tbody>
-    </table>
+      <h3><button onClick={ViewCHOA}>View Chart of Accounts</button></h3>
+      <h3><button onClick={AddGL}>Add Journal Entry</button></h3>
+      <h3><button onClick={ViewGL}>View Journal Entries</button></h3>
+    </div>  
   </div>
-)}
-    </div>
-  );
-
-
-      
-   
-
-
-
-
   
-
-  
-          }
+  )}
           export default AdminUser;
 
